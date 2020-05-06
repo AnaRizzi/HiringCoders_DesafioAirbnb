@@ -36,10 +36,16 @@ nav{
 	-webkit-text-fill-color: transparent;
 }
 
+.linhadocard{
+	display: flex;
+	justify-content: space-between;
+}
+
 .resultado{
 	width: 90%;
 	margin: auto;
 	height: 100%;
+	box-shadow: 4px 4px 6px 0 rgba(255, 26, 60, 0.2), 6px 6px 14px 0 rgba(255, 26, 60, 0.19);
 }
 
 .card-text{
