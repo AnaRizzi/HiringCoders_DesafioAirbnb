@@ -39,6 +39,14 @@ nav{
 .resultado{
 	width: 90%;
 	margin: auto;
+	height: 100%;
+}
+
+.card-text{
+	margin-top: 10px;
+}
+
+.borda_baixo{
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
