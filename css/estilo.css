@@ -1,0 +1,45 @@
+
+
+@font-face{
+	font-family: "Berlin Sans FB";
+	src: url("../font/BRLNSR.TTF");
+}
+
+.bordageral{
+	padding: 0 5%;
+}
+
+nav{
+	background-color: rgb(255, 255, 255);
+}
+
+.anabnb{
+	font-family: "Berlin Sans FB";
+}
+
+.anabnb a{
+	color: rgb(255, 26, 60) !important;
+	font-size: 200%;
+}
+
+#logo{
+	width: 45px;
+}
+
+#conteudo{
+	margin-top: 100px;
+}
+
+.rosa{
+	background: -webkit-linear-gradient(rgb(159,0,24), rgb(255, 26, 60));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.resultado{
+	width: 90%;
+	margin: auto;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
