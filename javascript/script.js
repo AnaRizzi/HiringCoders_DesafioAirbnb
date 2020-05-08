@@ -1,21 +1,16 @@
 const url = 'https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72'; //endereço da API
-var quartos = document.getElementById('quartos'); //div onde entrará os cards com as infos da API
+const quartos = document.getElementById('quartos'); //div onde entrará os cards com as infos da API
 let dados = []; //variável que receberá o JSON da API
 
-var nlinhas = 1;
-var ncol = 1;
-var linha;
-var itenstotais = 0;
+let itenstotais = 0;
 
 
 async function fetchjson() { //o fetch faz a requisição da API  
   try {
-    const fetchResult = fetch(url)
-    const response = await fetchResult;
+    const response = await fetch(url);
     const jsonData = await response.json(); //converte o resultado para JSON
 
     return jsonData; //devolve o resultado no formato json
-
   } 
   catch(e){
     console.log(e);
@@ -23,11 +18,11 @@ async function fetchjson() { //o fetch faz a requisição da API
   	
 }
 
+
 function separarinfos(objeto){ 	//recebe um objeto JSON
 	quartos.innerHTML = ""; 	// limpa a div que irá receber as informações
-	nlinhas = 1;				//começa a contagem do número de linhas
-	ncol = 1;					//começa a contagem do número de colunas
-	var indice = 0;				//começa a contagem do índice para percorrer o objeto
+	let indice = 0;				//começa a contagem do índice para percorrer o objeto
+	itenstotais = 0;			// zera a quantidade de itens encontrados para recomeçar
 
 	while (objeto[indice] != undefined){	//verifica se o índice é válido e percorre todos
 		criarcard(objeto[indice]);			//joga a informação daquele índice para a função criarcard
@@ -37,45 +32,37 @@ function separarinfos(objeto){ 	//recebe um objeto JSON
 }
 
 
+function criarcard(infos){		//recebe a informação para um card	
 
-function criarcard(infos){		//recebe a informação de um card	
+	let coluna = document.createElement('div');
+	coluna.setAttribute('class', 'col-md-6 col-lg-4 margem_baixo');
 
-	if (ncol > 3){				//haverá 3 colunas, se surgir uma quarta, cria mais uma linha
-		ncol = 1;				//e a coluna volta a ser a primeira daquela linha
-		nlinhas++;
-	}
-
-	if (ncol == 1){											//se for a primeira coluna, então cria a linha para ela
-		linha = document.createElement('div');
-		linha.setAttribute('class', 'row card-group linhadocard');
-		linha.setAttribute('id', 'linha ' + nlinhas)
-		quartos.appendChild(linha);							//salva a linha dentro da div quartos que está no html
-	}
-
-	var coluna = document.createElement('div');
-	coluna.setAttribute('class', 'col-md-4 borda_baixo');
-
-	var card = document.createElement('div');
+	let card = document.createElement('div');
 	card.setAttribute('class', 'card resultado text-center bg-light border-secondary');
 
-	var imagem = document.createElement('img');
+	let imagem = document.createElement('img');
 	imagem.setAttribute('class', 'card-img-top');
 	imagem.setAttribute('src', infos.photo);
 
-	var cardbody = document.createElement('div');
+	let cardbody = document.createElement('div');
 	cardbody.setAttribute('class', 'card-body');
 
-	var titulo = document.createElement('h3');
+	let titulo = document.createElement('h4');
 	titulo.setAttribute('class', 'card-title');
 	titulo.innerHTML = infos.name;
 
-	var tipo = document.createElement('h5');
-	tipo.setAttribute('class', 'card-subtitle text-muted');
-	tipo.innerHTML = 'Tipo: ' + infos.property_type;
+	let tipo = document.createElement('p');
+	tipo.setAttribute('class', 'card-subtitle text-muted margem_texto');
+	tipo.innerHTML = infos.property_type;
 
-	var preco = document.createElement('h4');
+	let preco = document.createElement('h4');
 	preco.setAttribute('class', 'card-footer bg-transparent');
-	preco.innerHTML = 'Preço: R$' + infos.price;
+	preco.innerHTML = `R$ ${infos.price}/noite`;
+
+	let coracao = document.createElement('img');
+	coracao.setAttribute('src', 'imagens/coracao1.png');
+	coracao.setAttribute('class', 'imgcoracao');
+	coracao.setAttribute('align', 'right');
 
 	/*
 	Na linha, é criada uma coluna.
@@ -84,15 +71,33 @@ function criarcard(infos){		//recebe a informação de um card
 	O cardbody contém título e subtítulo(tipo).
 	*/
 	card.appendChild(imagem);
-	cardbody.appendChild(titulo);
+	cardbody.appendChild(coracao);
 	cardbody.appendChild(tipo);	
+	cardbody.appendChild(titulo);	
 	card.appendChild(cardbody);
 	card.appendChild(preco);
 	coluna.appendChild(card);
-	linha.appendChild(coluna);
+	quartos.appendChild(coluna);
 
-	ncol++;				//incrementa o número da coluna
 	itenstotais++;		//conta o total de itens exibidos
+
+
+	card.onmouseover = function (){
+		card.style.boxShadow = "8px 8px 20px rgb(255, 26, 60)";
+	}
+
+	card.onmouseout = function (){
+		card.style.boxShadow = "5px 5px 15px rgb(150, 150, 150)";
+	}
+
+	coracao.onclick = function(){
+		if ((coracao.src).match('coracao1.png') == 'coracao1.png'){ //dentro do caminho do src, procura o nome do arquivo
+			coracao.src = 'imagens/coracao2.png';
+		}
+		else{
+			coracao.src = 'imagens/coracao1.png';
+		}
+	}
 	
 }
 
@@ -100,8 +105,8 @@ function criarcard(infos){		//recebe a informação de um card
 function exibirtotal(){
 	var divtotal = document.createElement('div');
 	divtotal.setAttribute('id', 'total');
-	divtotal.setAttribute('class', 'text-right text-muted')
-	divtotal.innerHTML = '<p>Foram encontrados ' + itenstotais + ' resultados.</p>';
+	divtotal.setAttribute('class', 'col-md-12 text-right text-muted')
+	divtotal.innerHTML = `<p>Foram encontrados ${itenstotais} resultados.</p>`;
 	quartos.appendChild(divtotal);
 }
 
@@ -113,7 +118,10 @@ async function main(){
 	}
 }
 
+
 //chamada para executar a função principal
 main(); 
+
+
 
 
