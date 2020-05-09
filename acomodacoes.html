@@ -42,24 +42,24 @@
 				<div class="col-md-12">
 					<nav>
 						<input type="text" placeholder="Para onde você vai?" class="border inputtext">
-						<input type="text" placeholder="Data de check-in" class="border inputdata" onfocus="(this.type='date')">
-						<input type="text" placeholder="Data de check-out" class="border inputdata" onfocus="(this.type='date')">
+						<input type="text" id="datainicial" placeholder="Data de check-in" class="border inputdata data" onfocus="(this.type='date')">
+						<input type="text" id="datafinal" placeholder="Data de check-out" class="border inputdata" onfocus="(this.type='date')">
 						<input type="number" placeholder="Quantos hóspedes?" class="border inputnumber">
-						<a href="#"><img src="imagens/lupa.png" class="btn botaolupa"/></a>
+						<a href="acomodacoes.html"><img src="imagens/lupa.png" class="btn botaolupa"/></a>
 
 
 					</nav>
 				</div>
 			</div>
-			
+
 			<div class="row filtros bordageral">
 				<div class="col-md-12 ">
 					<nav>
-						<div class="btn border">Menor preço</div>
-						<div class="btn border">Maior preço</div>
-						<div class="btn border">A-Z</div>
-						<div class="btn border">Z-A</div>
-						<div class="btn border">Tipo de acomodação</div>
+						<div class="btn border" onclick="ordemMenorPreco()">Menor preço</div>
+						<div class="btn border" onclick="ordemMaiorPreco()">Maior preço</div>
+						<div class="btn border" onclick="ordemAZ()">A-Z</div>
+						<div class="btn border" onclick="ordemZA()">Z-A</div>
+						<div class="btn border" onclick="ordemTipo()">Tipo de acomodação</div>
 					</nav>
 				</div>
 			</div>
@@ -71,7 +71,11 @@
 		</div>
 		
 	</div>
-	<div class="card-footer text-muted text-center">				
+	<div class="card-footer text-muted text-center">
+		<div >
+			<a href="https://github.com/AnaRizzi"><img class="imgredes float-right" src="imagens/github.png"/></a>
+			<a href="https://www.linkedin.com/in/analuciarizzi/"><img class="imgredes float-right" src="imagens/linkedin.jpg"/></a>
+		</div>			
 		<p>© 2020 - Desenvolvido por <a href="https://www.linkedin.com/in/analuciarizzi/" class="text-muted" target="blank">Ana Rizzi</a><br/>
 		Este site faz parte do desafio do curso Hiring Coders - Gama Academy</p>		
 	</div>

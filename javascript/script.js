@@ -1,6 +1,7 @@
 const url = 'https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72'; //endereço da API
 const quartos = document.getElementById('quartos'); //div onde entrará os cards com as infos da API
 let dados = []; //variável que receberá o JSON da API
+let ordenada = [];
 
 let itenstotais = 0;
 
@@ -23,7 +24,7 @@ function separarinfos(objeto){ 	//recebe um objeto JSON
 	quartos.innerHTML = ""; 	// limpa a div que irá receber as informações
 	let indice = 0;				//começa a contagem do índice para percorrer o objeto
 	itenstotais = 0;			// zera a quantidade de itens encontrados para recomeçar
-
+	
 	while (objeto[indice] != undefined){	//verifica se o índice é válido e percorre todos
 		criarcard(objeto[indice]);			//joga a informação daquele índice para a função criarcard
 		indice++;							
@@ -117,6 +118,43 @@ async function main(){
 		separarinfos(dados); //se for válido, envia os dados para a função separarinfos
 	}
 }
+
+
+function ordemAZ(){
+	ordenada = dados.sort(function (a, b) {
+		return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+	});
+	separarinfos(ordenada);
+}
+
+function ordemZA(){
+	ordenada = dados.sort(function (a, b) {
+		return (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0)
+	});
+	separarinfos(ordenada);
+}
+
+function ordemMenorPreco(){
+	ordenada = dados.sort(function (a, b) {
+		return (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0)
+	});
+	separarinfos(ordenada);
+}
+
+function ordemMaiorPreco(){
+	ordenada = dados.sort(function (a, b) {
+		return (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0)
+	});
+	separarinfos(ordenada);
+}
+
+function ordemTipo(){
+	ordenada = dados.sort(function (a, b) {
+		return (a.property_type > b.property_type) ? 1 : ((b.property_type > a.property_type) ? -1 : 0)
+	});
+	separarinfos(ordenada);
+}
+
 
 
 //chamada para executar a função principal
