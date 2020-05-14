@@ -110,6 +110,11 @@ nav{
 	height: 45px;
 }
 
+#search-button{
+	border-radius: 20px;
+	background-color: white;
+}
+
 .botaoacomodacoes{
 	font-size: 150%;
 	min-width: 30%;
@@ -172,3 +177,8 @@ nav{
 	margin: 5px;
 }
 
+.pagination{
+	width: 150px;
+	margin: auto;
+	margin-bottom: 30px;
+}

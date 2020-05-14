@@ -1,3 +1,5 @@
+//script original com as funcionalidades básicas pedidas no desafio
+
 const url = 'https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72'; //endereço da API
 const quartos = document.getElementById('quartos'); //div onde entrará os cards com as infos da API
 let dados = []; //variável que receberá o JSON da API
